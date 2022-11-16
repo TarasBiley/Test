@@ -15,54 +15,52 @@ public class Task1 {
         List<Integer> list = new ArrayList<>();
         list.add(1);
 
-        int[] arr1 = new int[n];
-        int[] arr2 = new int[m];
+        int[] arrN = new int[n];
+        int[] arrM = new int[m];
 
-        boolean a = false;
+        boolean endArr = false;
 
         //Заполнение первого массива
         for (int i = 0; i < n; i++) {
-            arr1[i] = i + 1;
+            arrN[i] = i + 1;
         }
 
         //Заполнение второго массива
         for (int i = 0; i < m; i++) {
-            arr2[i] = arr1[i];
+            arrM[i] = arrN[i];
         }
 
-        while (a == false) {
+        while (endArr == false) {
 
-            int[] arr3 = new int[m];
+            int[] arr = new int[m];
 
-            arr3 = arr2;
+            arr = arrM;
 
-            arr3[0] = arr2[arr2.length - 1];
+            arr[0] = arrM[arrM.length - 1];
 
-            if (arr1[0] != arr2[m - 1]) {
+            if (arrN[0] != arrM[m - 1]) {
 
                 for (int z = 1; z < m; z++) {
 
-                    int x = arr3[z - 1];
+                    int previouesEl = arr[z - 1];
                     for (int j = 0; j < n; j++) {
-                        int y = arr1[j];
-                        if (y - x == 1) {
-                            arr3[z] = y;
+                        int currentEl = arrN[j];
+                        if (currentEl - previouesEl == 1) {
+                            arr[z] = currentEl;
                         }
-                        if (x == arr1[n - 1]) {
-                            arr3[z] = arr1[0];
+                        if (previouesEl == arrN[n - 1]) {
+                            arr[z] = arrN[0];
                         }
                     }
                 }
 
-                arr2 = arr3;
-                list.add(arr2[0]);
-
-
-                a = false;
+                arrM = arr;
+                list.add(arrM[0]);
+                endArr = false;
             }
 
-            if (arr1[0] == arr2[m - 1]) {
-                a = true;
+            if (arrN[0] == arrM[m - 1]) {
+                endArr = true;
             }
         }
 
